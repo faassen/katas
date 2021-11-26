@@ -93,10 +93,13 @@ for this!
 
 ## Pass the variables along
 
-Now we want a version of the `hello` function that greets people by the
-variable `id`, like "Hello martijn!". We also want to supports routes that have
-multiple variables. What would be a good way to get the variables from the
-route into the function?
+We now want to support function values that take variables from the path that
+matched the route. That is, if we had a `hello` function value associated with
+`/user/:id`, and the path is `/user/martijn`, we want the function to return
+`"Hello martijn!"`.
+
+We also want to supports routes that have multiple variables. What would be a
+good way to get the variables from the matching path into the function?
 
 ## Hook it up to the web
 
