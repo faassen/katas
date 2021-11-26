@@ -73,7 +73,7 @@ is your chance!
 
 What we want is to have a single route that matches multiple paths. For
 instance, the route `/user/:id` should match with `/user/foo`, and user
-`/user/bar`, but not with `somethingelse` or `/user/bar/somethinginaddition`.
+`/user/bar`, but not with `/somethingelse` or `/user/bar/somethinginaddition`.
 
 We can decompose a route or a path into steps, so that the route `/user/:id`
 has two steps, one the hardcoded `user`, and the second the variable `:id`.
