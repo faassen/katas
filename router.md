@@ -17,7 +17,7 @@ request object that represents a HTTP request.
 ## A hardcoded router
 
 Create a match function that matches a single route, `/first`. It takes a
-single argument, the path. When passed in a path `/first` it should match and
+single argument, the path. When passed in a path `/first`, it should match and
 return true. If passed something else it should return false.
 
 ```
@@ -30,9 +30,10 @@ them later.
 
 ## A configurable router
 
-A hard-coded router above is not very useful. So let's make the router
+The hard-coded router above is not very useful. So let's make the router
 configurable. Extend the match function so that it receives a new first
-argument that has the list of expected routes.
+argument that has the list of expected routes. The old first argument
+becomes the second argument.
 
 ```
 match(['/first', '/second'], '/first') --> true
@@ -62,6 +63,7 @@ associated with the route. In this example, we have a function `hello` that
 when called returns the value "Hello!".
 
 ```
+const hello = () => "Hello!";
 routes = [{route: '/first', value: hello}]
 resolve(routes, '/first') -> "Hello!"
 ```
@@ -71,18 +73,18 @@ resolve(routes, '/first') -> "Hello!"
 You may have already wanted to implement pattern matching for `/user/:id`. Now
 is your chance!
 
-What we want is to have a single route that matches multiple paths. For
-instance, the route `/user/:id` should match with `/user/foo`, and user
+What we want is to be able to declare a single route that matches multiple
+paths. For instance, the route `/user/:id` should match with `/user/foo`, and
 `/user/bar`, but not with `/somethingelse` or `/user/bar/somethinginaddition`.
 
 We can decompose a route or a path into steps, so that the route `/user/:id`
 has two steps, one the hardcoded `user`, and the second the variable `:id`.
 
-In the future we will want to do something with the step in the path that
-matches `:id`, but we will worry about that later.
-
 After you have one step working, make sure that it also works with multiple
 variables in a route, such as `/user/:id/property/:name`.
+
+In the future we will want to do something with the step in the path that
+matches `:id`, but we will worry about that later.
 
 ## route precedence
 
@@ -95,10 +97,10 @@ for this!
 
 We now want to support function values that take variables from the path that
 matched the route. That is, if we had a `hello` function value associated with
-`/user/:id`, and the path is `/user/martijn`, we want the function to return
-`"Hello martijn!"`.
+`/user/:id`, and the path is `/user/martijn`, we want the function to be able
+to return `"Hello martijn!"`.
 
-We also want to supports routes that have multiple variables. What would be a
+We also want to support routes that have multiple variables. What would be a
 good way to get the variables from the matching path into the function?
 
 ## Hook it up to the web
@@ -132,5 +134,6 @@ Congratulations: you're well on the way to writing your own web framework!
 Make it so that you not only pass path variables (like `id` in `/user/:id`)
 into the routing functions, but also any parameters attached to the path like
 `/first?a=1&b=foo`. How would you parse this structure, and into what? What
-about repeating variable names (which are allowed in URLs)? Hint: you're not on
-your own. Look for library code to help you!
+about repeating variable names (which are allowed in URLs)?
+
+Hint: you're not on your own. Look for library code to help you!
