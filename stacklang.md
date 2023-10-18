@@ -152,8 +152,8 @@ defined: square
 16
 ```
 
-The definitions are not stored in the stack: use a hash table (JS `Map`) for
-them.
+The definitions are not stored in the stack: use a hash table (JS `Map` or
+object) for them.
 
 ## Operations as stack values
 
